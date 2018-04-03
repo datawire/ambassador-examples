@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: grpc-basic
+  namespace: {{ build.profile.namespace }}
+spec:
+  replicas: {{ build.profile.replicas | default(1) }}
+  template:
+    metadata:
+      labels:
+        app: grpc-basic
+    spec:
+      serviceAccountName: grpc-basic
+      restartPolicy: Always
+      containers:
+        - name: grpc-basic
+          image: {{ build.image["Dockerfile"] }}
+          ports:
+            - name: grpc
+              containerPort: 50051

@@ -1,0 +1,17 @@
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: development
+
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: edge
+
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: stable

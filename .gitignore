@@ -1,0 +1,12 @@
+# --- Forge ---
+.forge
+forge.yaml
+
+# --- Intellij IDEA ---
+.idea
+*.iml
+
+# --- Python ---
+virtualenv
+venv
+*.pyc
