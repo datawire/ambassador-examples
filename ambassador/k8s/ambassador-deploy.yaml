@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ambassador
+  namespace: {{ build.profile.namespace }}
+spec:
+  replicas: {{ build.profile.replicas | default(1) }}
+  template:
+    metadata:
+      labels:
+        app: ambassador
+    spec:
+      serviceAccountName: ambassador
+      restartPolicy: Always
+      containers:
+        - name: ambassador
+          image: {{ service.dockerImage }}
+          ports:
+            - name: admin
+              containerPort: 8877
+            - name: envoy
+              containerPort: 80
+          env:
+            - name: AMBASSADOR_SHUTDOWN_TIME
+              value: "300"
+            - name: AMBASSADOR_RESTART_TIME
+              value: "90"
+            - name: AMBASSADOR_DRAIN_TIME
+              value: "60"
+            - name: SCOUT_DISABLE
+              value: "1"
+            - name: AMBASSADOR_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          livenessProbe:
+            httpGet:
+              path: /ambassador/v0/check_alive
+              port: 8877
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /ambassador/v0/check_ready
+              port: 8877
+            initialDelaySeconds: 10
+            periodSeconds: 10

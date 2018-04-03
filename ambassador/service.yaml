@@ -1,0 +1,17 @@
+---
+name: ambassador
+
+dockerImage: quay.io/datawire/ambassador:0.30.2
+
+profiles:
+  stable:
+    namespace: stable
+  edge:
+    namespace: edge
+  development:
+    namespace: development
+
+branches:
+  master: stable
+  rc/*: edge
+  dev/*: development
