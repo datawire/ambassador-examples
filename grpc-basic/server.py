@@ -2,11 +2,11 @@
 
 from concurrent import futures
 import time
+import os
 
 import grpc
 
 from grpc_reflection.v1alpha import reflection
-from grpc_reflection.v1alpha import reflection_pb2
 from grpc_reflection.v1alpha import reflection_pb2_grpc
 
 import helloworld_pb2
@@ -19,7 +19,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
-        return helloworld_pb2.HelloReply(message='Hello, {}!'.format(request.name))
+        return helloworld_pb2.HelloReply(message='Hello, {} (host: {})!'.format(request.name, os.getenv("HOSTNAME")))
 
 
 def serve():

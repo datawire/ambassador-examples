@@ -1,3 +1,4 @@
-# GRPC Basic Example
+# Ambassador `grpc-basic` Example
 
-Basic GRPC example
+A basic GRPC webservice. The implementation is based on the standard GRPC "Hello, ${name}" getting started.
+

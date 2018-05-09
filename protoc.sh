@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-PROGRAM="$(basename $0)"
-IMAGE="quay.io/datawire/grpcurl"
+IMAGE="znly/protoc"
 VERSION="latest"
 
 docker run \
-  -it \
+  --interactive \
+  --tty \
   --rm \
   --network host \
-  --volume $(pwd):/home/user/work:ro \
+  --volume $(pwd):/home/user/work:rw \
   --workdir /home/user/work \
   -e "COMMAND=${COMMAND}" \
   -e HOST_USER_ID=$(id -u) \

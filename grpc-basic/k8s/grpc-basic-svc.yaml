@@ -4,7 +4,26 @@ kind: Service
 metadata:
   name: grpc-basic
   namespace: {{ build.profile.namespace }}
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: grpc-basic-{{ build.profile.namespace }}
+      grpc: true
+      prefix: /helloworld.Greeter/
+      rewrite: /helloworld.Greeter/
+      service: grpc-basic:50051
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: grpc-basic-{{ build.profile.namespace }}-grpcreflect
+      grpc: true
+      prefix: /grpc.
+      rewrite: /grpc.
+      service: grpc-basic:50051
 spec:
+  clusterIP: None
   type: ClusterIP
   ports:
     - name: grpc

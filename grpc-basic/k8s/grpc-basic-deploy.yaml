@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: grpc-basic
@@ -11,11 +11,10 @@ spec:
       labels:
         app: grpc-basic
     spec:
-      serviceAccountName: grpc-basic
       restartPolicy: Always
       containers:
         - name: grpc-basic
-          image: {{ build.image["Dockerfile"] }}
+          image: {{ build.images["Dockerfile"] }}
           ports:
             - name: grpc
               containerPort: 50051
