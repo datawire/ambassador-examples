@@ -1,0 +1,7 @@
+---
+name: redirect-3p-service
+
+profiles:
+  stable:
+    namespace: stable
+    replicas: 1

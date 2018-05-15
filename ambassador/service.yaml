@@ -1,7 +1,7 @@
 ---
 name: ambassador
 
-dockerImage: quay.io/datawire/ambassador:0.30.2
+dockerImage: quay.io/datawire/ambassador:0.32.2
 
 profiles:
   stable:

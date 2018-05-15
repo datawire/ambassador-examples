@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redirect-3p
+  namespace: {{ build.profile.namespace }}
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: redirect-3p-httpbin
+      prefix: /httpbin/
+      service: httpbin.org:80
+      host_rewrite: httpbin.org
+
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: redirect-3p-hipsterjesus
+      prefix: /hj/
+      service: hipsterjesus.com:80
+      host_rewrite: hipsterjesus.com
+spec:
+  type: ClusterIP
+  ports:
+    - name: redirect-3p
+      port: 80

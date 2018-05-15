@@ -22,12 +22,6 @@ spec:
             - name: envoy
               containerPort: 80
           env:
-            - name: AMBASSADOR_SHUTDOWN_TIME
-              value: "300"
-            - name: AMBASSADOR_RESTART_TIME
-              value: "90"
-            - name: AMBASSADOR_DRAIN_TIME
-              value: "60"
             - name: SCOUT_DISABLE
               value: "1"
             - name: AMBASSADOR_NAMESPACE
