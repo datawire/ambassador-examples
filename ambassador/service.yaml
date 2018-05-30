@@ -1,17 +1,16 @@
 ---
 name: ambassador
 
-dockerImage: quay.io/datawire/ambassador:0.32.2
+cloud: none
+aws:
+  listenPort: 80
+  sslCertificateArn: arn:aws:acm:us-east-1:914373874199:certificate/1d16f0a1-abd5-44b3-8da5-5e06c843fd3d
+  useProxyProtocol: true
 
 profiles:
-  stable:
-    namespace: stable
-  edge:
-    namespace: edge
-  development:
-    namespace: development
-
-branches:
-  master: stable
-  rc/*: edge
-  dev/*: development
+  sandbox0:
+    dockerImage: quay.io/datawire/ambassador:0.34.0
+    namespace: sbx0
+  sandbox1:
+    dockerImage: quay.io/datawire/ambassador:0.34.0
+    namespace: sbx1

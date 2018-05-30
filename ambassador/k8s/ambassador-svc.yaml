@@ -13,17 +13,9 @@ spec:
   selector:
     app: ambassador
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ambassador
-  namespace: {{ build.profile.namespace }}
-spec:
-  type: NodePort
-  ports:
-    - name: envoy
-      port: 80
-      targetPort: envoy
-  selector:
-    app: ambassador
+
+{% if service.cloud | default("none") | lower == "aws" %}
+{% include "service-aws-loadbalancer.include" %}
+{% else %}
+{% include "service-any-nodeport.include" %}
+{% endif -%}

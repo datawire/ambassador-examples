@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ service.name }}
+  namespace: {{ build.profile.namespace }}
+  labels:
+    app: {{ service.name }}
+spec:
+  replicas: {{ build.profile.replicas }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ service.name }}
+    spec:
+      containers:
+        - name: conntest
+          image: {{ build.profile.dockerImage }}
+          ports:
+            - name: http-api
+              containerPort: 7000
