@@ -8,8 +8,9 @@ metadata:
     app: {{ service.name }}
 spec:
   replicas: {{ build.profile.replicas }}
-  strategy:
-    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ service.name }}
   template:
     metadata:
       labels:

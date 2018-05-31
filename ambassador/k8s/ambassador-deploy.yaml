@@ -6,6 +6,9 @@ metadata:
   namespace: {{ build.profile.namespace }}
 spec:
   replicas: {{ build.profile.replicas | default(1) }}
+  selector:
+    matchLabels:
+      app: ambassador
   template:
     metadata:
       labels:

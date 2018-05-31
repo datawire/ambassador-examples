@@ -13,6 +13,7 @@ metadata:
       kind: Mapping
       name: http-loadbalance
       prefix: /
+      host: http-loadbalance
       service: {{ service.name }}.{{ build.profile.namespace }}
 spec:
   selector:
@@ -23,3 +24,26 @@ spec:
       port: 80
       protocol: TCP
       targetPort: http-api
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ service.name }}-nosvcproxy
+  namespace: {{ build.profile.namespace }}
+  labels:
+    app: {{ service.name }}
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind: Mapping
+      name: http-loadbalance-nosvcproxy
+      prefix: /
+      host: http-loadbalance-nosvcproxy
+      service: {{ service.name }}-nosvcproxy.{{ build.profile.namespace }}:7000
+spec:
+  selector:
+    app: {{ service.name }}
+  type: ClusterIP
+  clusterIP: None

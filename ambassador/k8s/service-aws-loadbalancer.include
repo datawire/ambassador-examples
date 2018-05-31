@@ -27,6 +27,6 @@ spec:
   type: LoadBalancer
   ports:
     - port: {{ service.aws.listenPort }}
-      targetPort: ingress
+      targetPort: envoy
   selector:
-    app: {{ build.name }}
+    app: {{ service.name }}

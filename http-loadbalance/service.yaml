@@ -1,12 +1,12 @@
 ---
-name: htttp-loadbalance
+name: http-loadbalance
 
 profiles:
   sandbox0:
     dockerImage: quay.io/datawire/conntest:latest
-    namespace: sbx0
-    replicas: 5
+    namespace: ambassador-sbx0
+    replicas: 3
   sandbox1:
     dockerImage: quay.io/datawire/conntest:latest
-    namespace: sbx1
-    replicas: 2
+    namespace: ambassador-sbx0
+    replicas: 3
