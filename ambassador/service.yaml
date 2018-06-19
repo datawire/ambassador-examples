@@ -1,7 +1,7 @@
 ---
 name: ambassador
 
-cloud: aws
+cloud: none
 aws:
   listenPort: 443
   sslCertificateArn: arn:aws:acm:us-east-1:914373874199:certificate/1d16f0a1-abd5-44b3-8da5-5e06c843fd3d
@@ -9,10 +9,10 @@ aws:
 
 profiles:
   sandbox0:
-    dockerImage: quay.io/datawire/ambassador:0.34.0
+    dockerImage: quay.io/datawire/ambassador:0.34.1
     replicas: 1
     namespace: ambassador-sbx0
   sandbox1:
-    dockerImage: quay.io/datawire/ambassador:0.34.0
+    dockerImage: quay.io/datawire/ambassador:0.34.1
     replicas: 1
     namespace: ambassador-sbx1

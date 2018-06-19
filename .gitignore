@@ -1,6 +1,5 @@
 # --- Forge ---
 .forge
-forge.yaml
 
 # --- Intellij IDEA ---
 .idea
